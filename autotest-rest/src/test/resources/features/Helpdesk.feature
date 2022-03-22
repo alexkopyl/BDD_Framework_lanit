@@ -21,62 +21,50 @@
       | priority         | 2                  |
       | submitter_email  | EEEEEEEE@EEEDDD.EE |
 
-    # Входим на сайт
-    * создать запрос
-      | method | path         | body              |
-      | POST   | /api/login   | authToken.json |
-    * добавить header
-      | Content-Type | application/json |
-      | username     | admin            |
-      | password     | adminat          |
-    * отправить запрос
-    * статус код 201
-    * извлечь данные
-      | req_id              | $.id              |
-      | req_queue           | $.queue           |
-      | req_title           | $.title           |
-      | req_description     | $.description     |
-      | req_priority        | $.priority        |
-      | req_submitter_email | $.submitter_email |
-      | req_token           | $.token           |
-
     # Создаем тикет
     * создать запрос
       | method | path         | body              |
       | POST   | /api/tickets | createTicket.json |
     * добавить header
       | Content-Type | application/json |
-      | username     | admin            |
-      | password     | adminat          |
     * отправить запрос
     * статус код 201
     * извлечь данные
-      | req_id              | $.id              |
-      | req_queue           | $.queue           |
-      | req_title           | $.title           |
-      | req_description     | $.description     |
-      | req_priority        | $.priority        |
-      | req_submitter_email | $.submitter_email |
-      | req_token           | $.token           |
-
-
+      | id              | $.id              |
+      | queue           | $.queue           |
+      | title           | $.title           |
+      | description     | $.description     |
+      | priority        | $.priority        |
+      | submitter_email | $.submitter_email |
     * сравнить значения
-      | ${ticket_id}              | != | null |
-      | ${ticket_queue}           | != | null |
-      | ${ticket_title}           | != | null |
-      | ${ticket_description}     | != | null |
-      | ${ticket_priority}        | != | null |
-      | ${ticket_submitter_email} | != | null |
+      | ${id}              | != | null |
+      | ${queue}           | != | null |
+      | ${title}           | != | null |
+      | ${description}     | != | null |
+      | ${priority}        | != | null |
+      | ${submitter_email} | != | null |
+
+    # Входим на сайт
+    * создать запрос
+      | method | path         | body              |
+      | POST   | /api/login   | createToken.json  |
+    * добавить header
+      | Content-Type    | application/json  |
+    * отправить запрос
+    * статус код 200
+    * извлечь данные
+      | token           | $.token           |
 
     # Вторая часть теста - запрос id и проверка данных
     * создать запрос
-      | method | path                      |
-      | GET    | /api/tickets/req_id       |
+      | method        | path             |
+      | GET           | /api/tickets/${id}   |
     * добавить header
-      | accept | application/json          |
-      | token | application/json          |
-
-
+      | Accept        | application/json |
+      | Content-Type  | application/json |
+      | authorization | ${token}         |
+      | username      | admin            |
+      | password      | adminat          |
 
     # Отправляем запрос
     * отправить запрос

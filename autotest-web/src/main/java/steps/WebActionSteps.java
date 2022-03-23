@@ -2,7 +2,9 @@ package steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.ru.Допустим;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
@@ -12,6 +14,7 @@ import ru.lanit.at.utils.Sleep;
 import ru.lanit.at.web.pagecontext.PageManager;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.element;
 
 
 public class WebActionSteps {
@@ -45,6 +48,15 @@ public class WebActionSteps {
                 .shouldBe(Condition.visible)
                 .click();
         LOGGER.info("клик на элемент '{}'", elementName);
+    }
+
+    @Допустим("указать файл {string} для выбора")
+    public void указать_файл_для_выбора(String elementName) {
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        element
+                .sendKeys("C:\\Users\\quark\\bdd_framework_lanit\\images\\allure.png");
     }
 
     /**

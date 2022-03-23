@@ -62,7 +62,6 @@
                 <version>${allure.maven.version}</version>
                 <configuration>
                     <reportDirectory>${project.build.directory}\allure-report</reportDirectory>
-                    <resultsDirectory>${project.basedir}\allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>

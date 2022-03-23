@@ -3,13 +3,10 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
-        plugin = {
-                "pretty",
-                "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"
-        },
+        plugin = {"pretty", "io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"},
         features = "classpath:features",
         glue = {"steps", "hooks"},
-        tags = "@google"
+        tags = "@lanit"
 )
 public class Runner extends AbstractTestNGCucumberTests {
 

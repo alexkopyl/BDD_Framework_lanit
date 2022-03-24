@@ -52,7 +52,7 @@ public class WebActionSteps {
     }
 
     @Допустим("кликнуть на элемент {string} и указать файл для загрузки")
-    public void указать_файл_и_загрузить(String elementName) {
+    public void сlickOnLabelUpFile(String elementName) {
         File file = new File("src/main/resources/file.txt");
         SelenideElement element = pageManager
                 .getCurrentPage()

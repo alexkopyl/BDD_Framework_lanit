@@ -42,7 +42,7 @@
       | method | path              |
       | GET    | /user/${username} |
     * добавить header
-      | accept | application/json |
+      | accept | application/json  |
 
     # FLAKY - Из-за особенностей сервиса PetStore может возвращать 404
     * отправить запрос

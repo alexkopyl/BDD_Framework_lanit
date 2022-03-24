@@ -2,7 +2,9 @@ package steps;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.cucumber.java.ru.Допустим;
 import io.cucumber.java.ru.Если;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
@@ -11,7 +13,9 @@ import org.slf4j.LoggerFactory;
 import ru.lanit.at.utils.Sleep;
 import ru.lanit.at.web.pagecontext.PageManager;
 
-import static com.codeborne.selenide.Selenide.$;
+import java.io.File;
+
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class WebActionSteps {
@@ -45,6 +49,18 @@ public class WebActionSteps {
                 .shouldBe(Condition.visible)
                 .click();
         LOGGER.info("клик на элемент '{}'", elementName);
+    }
+
+    @Допустим("кликнуть на элемент {string} и указать файл для загрузки")
+    public void сlickOnLabelUpFile(String elementName) {
+        File file = new File("src/main/resources/file.txt");
+        SelenideElement element = pageManager
+                .getCurrentPage()
+                .getElement(elementName);
+        element
+                .shouldBe(Condition.visible)
+                .$x(".//input[@type='file']")
+                .uploadFile(file);
     }
 
     /**

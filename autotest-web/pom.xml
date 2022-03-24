@@ -69,6 +69,7 @@
         </plugins>
     </build>
 
+
     <dependencies>
         <dependency>
             <groupId>ru.lanit.at</groupId>

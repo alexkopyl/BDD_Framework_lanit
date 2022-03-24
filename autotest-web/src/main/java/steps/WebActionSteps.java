@@ -13,8 +13,9 @@ import org.slf4j.LoggerFactory;
 import ru.lanit.at.utils.Sleep;
 import ru.lanit.at.web.pagecontext.PageManager;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.element;
+import java.io.File;
+
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class WebActionSteps {
@@ -50,13 +51,16 @@ public class WebActionSteps {
         LOGGER.info("клик на элемент '{}'", elementName);
     }
 
-    @Допустим("указать файл {string} для выбора")
-    public void указать_файл_для_выбора(String elementName) {
+    @Допустим("кликнуть на элемент {string} и указать файл для загрузки")
+    public void указать_файл_и_загрузить(String elementName) {
+        File file = new File("src/main/resources/file.txt");
         SelenideElement element = pageManager
                 .getCurrentPage()
                 .getElement(elementName);
         element
-                .sendKeys("C:\\Users\\quark\\bdd_framework_lanit\\images\\allure.png");
+                .shouldBe(Condition.visible)
+                .$x(".//input[@type='file']")
+                .uploadFile(file);
     }
 
     /**
